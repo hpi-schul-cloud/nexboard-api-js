@@ -1,0 +1,17 @@
+{
+  "name": "nexboard-api-js",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schul-cloud/nexboard-api-js.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/schul-cloud/nexboard-api-js/issues"
+  },
+  "homepage": "https://github.com/schul-cloud/nexboard-api-js#readme",
+  "dependencies": {
+    "sync-request" : "^4.1.0"
+  }
+}
