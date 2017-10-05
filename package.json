@@ -1,6 +1,6 @@
 {
   "name": "nexboard-api-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A javascript wrapper for the Nexboard API.",
   "repository": {
     "type": "git",
@@ -12,6 +12,6 @@
   },
   "homepage": "https://github.com/schul-cloud/nexboard-api-js#readme",
   "dependencies": {
-    "sync-request" : "^4.1.0"
+    "sync-request": "^4.1.0"
   }
 }
