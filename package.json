@@ -1,7 +1,7 @@
 {
   "name": "nexboard-api-js",
   "version": "1.0.0",
-  "description": "A ruby wrapper for the Nexboard API.",
+  "description": "A javascript wrapper for the Nexboard API.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/schul-cloud/nexboard-api-js.git"
