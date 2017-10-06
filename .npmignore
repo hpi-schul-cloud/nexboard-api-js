@@ -28,6 +28,6 @@ node_modules
 .lock-wscript
 
 #IDEA
-.idea
+.idea/
 
 data/
