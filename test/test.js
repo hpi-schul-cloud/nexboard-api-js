@@ -22,7 +22,7 @@ describe('Nexboard JS Wrapper', () => {
     it('Should get a Board with projectId', () => {
         NexboardTest.getBoardsByProject(1013)
             .then(res => {
-                expect(res).to.be.empty;
+                expect(res).to.be.an('array');
                 expect(res).to.be.not.null;
             })
     });
