@@ -3,26 +3,20 @@
 ## Useage
 
 ```javascript
-Nexboard = require("./nexboard-api/Nexboard");
+Nexboard = require("nexboard-api-js");
 
-nex = new Nexboard(ApiKey, UserID, Url , TemplateProjectID );
+nex = new Nexboard(ApiKey, UserID, Url);
 ```
 ### params 
 - `ApiKey` = The identification key from account.
-- `UserID` = The ID from user.
-- `Url`= the URL of the API interface. If zero the value is set to [default](https://nexboard.nexenio.com/portal/api/public/)
-- `TemplateProjectID` = A ID from an project, wich will use as template.
+- `UserId` = The Id from user.
+- `Url`= the URL of the API interface. If zero the value is set to [default](https://nexboard.nexenio.com/portal/api/v1/public/)
 
 ### functions
 ```javascript
 nex.getProjectsIDs();
 ```
 retun a list of IDs from all projects.
-
-```javascript
-nex.getBoardsByTemplate()
-```
-retun a list of IDs from all boards from the template project.
 
 
 ```javascript
@@ -36,8 +30,7 @@ create an new project and return it.
 nex.createBoard(
     "Title of Board" , 
     "description of Board", 
-    IdOfProjectFromThisBoard,
-    TemplateBoardId);       // May be Null
+    IdOfProjectFromThisBoard);
 ```
 create an new board and return it. 
     
