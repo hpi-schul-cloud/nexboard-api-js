@@ -113,45 +113,84 @@ describe('neXboard API', () => {
 
     describe('GET /projects/:id/boards', () => {
 
-      const PROJECT_ID = '1';
-      const RESPONSE_BODY = [{
-        id: '1',
-        title: 'Board 1',
-        description: 'This is Board 1',
-        projectId: PROJECT_ID,
-      }, {
-        id: '2',
-        title: 'Board 2',
-        description: 'This is Board 2',
-        projectId: PROJECT_ID,
-      }];
+        const PROJECT_ID = '1';
+        const RESPONSE_BODY = [{
+            id: '1',
+            title: 'Board 1',
+            description: 'This is Board 1',
+            projectId: PROJECT_ID,
+        }, {
+            id: '2',
+            title: 'Board 2',
+            description: 'This is Board 2',
+            projectId: PROJECT_ID,
+        }];
 
-      before(done => {
-        const interaction = {
-          state: 'I have some boards in my project',
-          uponReceiving: 'a request for all Boards of my projects',
-          withRequest: {
-            method: 'GET',
-            path: `/projects/${PROJECT_ID}/boards`,
-            headers: {
-              Accept: 'application/json'
-            }
-          },
-          willRespondWith: {
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: RESPONSE_BODY
-          }
-        };
-        provider.addInteraction(interaction).then(() => done());
-      });
+        before(done => {
+            const interaction = {
+                state: 'I have some boards in my project',
+                uponReceiving: 'a request for all Boards of my projects',
+                withRequest: {
+                  method: 'GET',
+                  path: `/projects/${PROJECT_ID}/boards`,
+                  headers: {
+                      Accept: 'application/json'
+                  }
+              },
+              willRespondWith: {
+                  status: 200,
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: RESPONSE_BODY
+              }
+            };
+            provider.addInteraction(interaction).then(() => done());
+        });
 
-      it('should return a list of projects', () => {
-        const myProjects = nexboard.getBoardsByProject(PROJECT_ID);
+        it('should return a list of projects', () => {
+            const myProjects = nexboard.getBoardsByProject(PROJECT_ID);
 
-        return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
-      })
+            return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
+        })
     });
-})
+
+    describe('GET /boards/:id', () => {
+
+        const BOARD_ID = '1';
+        const RESPONSE_BODY = {
+            id: BOARD_ID,
+            title: 'Board 1',
+            description: 'This is Board 1',
+            projectId: '1',
+        };
+
+        before(done => {
+            const interaction = {
+                state: 'I have some a board',
+                uponReceiving: 'a request for board by id',
+                withRequest: {
+                    method: 'GET',
+                    path: `/boards/${BOARD_ID}`,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: RESPONSE_BODY
+                }
+            };
+            provider.addInteraction(interaction).then(() => done());
+        });
+
+        it('should return a list of projects', () => {
+            const myProjects = nexboard.getBoard(BOARD_ID);
+
+            return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
+        })
+    });
+});

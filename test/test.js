@@ -24,6 +24,7 @@ describe('Nexboard JS Wrapper', () => {
 
     it('Should get a Board by id', () => {
         const boardById = NexboardTest.getBoard(4862)
+
         return Promise.all([
             expect(boardById).to.eventually.be.not.null,
             expect(boardById).to.eventually.have.property('id').that.is.eq('4862'),

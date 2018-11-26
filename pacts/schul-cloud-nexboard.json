@@ -87,6 +87,29 @@
           }
         ]
       }
+    },
+    {
+      "description": "a request for board by id",
+      "providerState": "I have some a board",
+      "request": {
+        "method": "GET",
+        "path": "/boards/1",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "1",
+          "title": "Board 1",
+          "description": "This is Board 1",
+          "projectId": "1"
+        }
+      }
     }
   ],
   "metadata": {
