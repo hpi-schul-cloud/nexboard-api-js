@@ -33,30 +33,30 @@ describe('neXboard API', () => {
     describe('GET /projects', () => {
 
         const RESPONSE_BODY = [{
-            id: "1",
-            title: "Project 1",
-            description: "This is project 1",
+            id: '1',
+            title: 'Project 1',
+            description: 'This is project 1',
         }, {
-            id: "2",
-            title: "Project 2",
-            description: "This is project 2",
+            id: '2',
+            title: 'Project 2',
+            description: 'This is project 2',
         }];
 
         before(done => {
             const interaction = {
-                state: "I have some projects",
-                uponReceiving: "a request for all my projects",
+                state: 'I have some projects',
+                uponReceiving: 'a request for all my projects',
                 withRequest: {
-                    method: "GET",
-                    path: "/projects",
+                    method: 'GET',
+                    path: '/projects',
                     headers: {
-                        Accept: "application/json"
+                        Accept: 'application/json'
                     }
                 },
                 willRespondWith: {
                     status: 200,
                     headers: {
-                        "Content-Type": "application/json"
+                        'Content-Type': 'application/json'
                     },
                     body: RESPONSE_BODY
                 }
@@ -70,5 +70,88 @@ describe('neXboard API', () => {
 
             return expect(myProjects).to.eventually.eql(expectedIds);
         })
-    })
+    });
+
+    describe('POST /projects', () => {
+
+        const PROJECT_TITLE = 'Project 1';
+        const PROJECT_DESC = 'This is project 1'
+        const RESPONSE_BODY = {
+            id: '1',
+            title: PROJECT_TITLE,
+            description: PROJECT_DESC,
+        };
+
+        before(done => {
+            const interaction = {
+                state: 'I have some projects',
+                uponReceiving: 'a request to create a project',
+                withRequest: {
+                    method: 'POST',
+                    path: '/projects',
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                },
+                willRespondWith: {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: RESPONSE_BODY
+                }
+            };
+            provider.addInteraction(interaction).then(() => done());
+        });
+
+        it('should create a project', () => {
+            const myProjects = nexboard.createProject('Project 1', 'This is project 1');
+
+            return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
+        })
+    });
+
+    describe('GET /projects/:id/boards', () => {
+
+      const PROJECT_ID = '1';
+      const RESPONSE_BODY = [{
+        id: '1',
+        title: 'Board 1',
+        description: 'This is Board 1',
+        projectId: PROJECT_ID,
+      }, {
+        id: '2',
+        title: 'Board 2',
+        description: 'This is Board 2',
+        projectId: PROJECT_ID,
+      }];
+
+      before(done => {
+        const interaction = {
+          state: 'I have some boards in my project',
+          uponReceiving: 'a request for all Boards of my projects',
+          withRequest: {
+            method: 'GET',
+            path: `/projects/${PROJECT_ID}/boards`,
+            headers: {
+              Accept: 'application/json'
+            }
+          },
+          willRespondWith: {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: RESPONSE_BODY
+          }
+        };
+        provider.addInteraction(interaction).then(() => done());
+      });
+
+      it('should return a list of projects', () => {
+        const myProjects = nexboard.getBoardsByProject(PROJECT_ID);
+
+        return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
+      })
+    });
 })

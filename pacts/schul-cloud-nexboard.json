@@ -7,7 +7,7 @@
   },
   "interactions": [
     {
-      "description": "a request all my projects",
+      "description": "a request for all my projects",
       "providerState": "I have some projects",
       "request": {
         "method": "GET",
@@ -31,6 +31,59 @@
             "id": "2",
             "title": "Project 2",
             "description": "This is project 2"
+          }
+        ]
+      }
+    },
+    {
+      "description": "a request to create a project",
+      "providerState": "I have some projects",
+      "request": {
+        "method": "POST",
+        "path": "/projects",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "1",
+          "title": "Project 1",
+          "description": "This is project 1"
+        }
+      }
+    },
+    {
+      "description": "a request for all Boards of my projects",
+      "providerState": "I have some boards in my project",
+      "request": {
+        "method": "GET",
+        "path": "/projects/1/boards",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "1",
+            "title": "Board 1",
+            "description": "This is Board 1",
+            "projectId": "1"
+          },
+          {
+            "id": "2",
+            "title": "Board 2",
+            "description": "This is Board 2",
+            "projectId": "1"
           }
         ]
       }
