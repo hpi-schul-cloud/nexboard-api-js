@@ -1,0 +1,44 @@
+{
+  "consumer": {
+    "name": "Schul-Cloud"
+  },
+  "provider": {
+    "name": "neXboard"
+  },
+  "interactions": [
+    {
+      "description": "a request all my projects",
+      "providerState": "I have some projects",
+      "request": {
+        "method": "GET",
+        "path": "/projects",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "1",
+            "title": "Project 1",
+            "description": "This is project 1"
+          },
+          {
+            "id": "2",
+            "title": "Project 2",
+            "description": "This is project 2"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
