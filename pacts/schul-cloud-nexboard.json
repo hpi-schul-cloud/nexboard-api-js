@@ -23,12 +23,12 @@
         },
         "body": [
           {
-            "id": "1",
+            "id": "__project1_id__",
             "title": "Project 1",
             "description": "This is project 1"
           },
           {
-            "id": "2",
+            "id": "__project2_id__",
             "title": "Project 2",
             "description": "This is project 2"
           }
@@ -51,9 +51,8 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "id": "1",
-          "title": "Project 1",
-          "description": "This is project 1"
+          "title": "Project",
+          "description": "This is a project"
         }
       }
     },
@@ -62,7 +61,7 @@
       "providerState": "I have some boards in my project",
       "request": {
         "method": "GET",
-        "path": "/projects/1/boards",
+        "path": "/projects/__project1_id__/boards",
         "headers": {
           "Accept": "application/json"
         }
@@ -74,26 +73,26 @@
         },
         "body": [
           {
-            "id": "1",
+            "id": "__board1_id__",
             "title": "Board 1",
             "description": "This is Board 1",
-            "projectId": "1"
+            "projectId": "__project1_id__"
           },
           {
-            "id": "2",
+            "id": "__board1_id__",
             "title": "Board 2",
             "description": "This is Board 2",
-            "projectId": "1"
+            "projectId": "__project1_id__"
           }
         ]
       }
     },
     {
       "description": "a request for board by id",
-      "providerState": "I have some a board",
+      "providerState": "I have a board",
       "request": {
         "method": "GET",
-        "path": "/boards/1",
+        "path": "/boards/__board1_id__",
         "headers": {
           "Accept": "application/json"
         }
@@ -104,10 +103,10 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "id": "1",
+          "id": "__board1_id__",
           "title": "Board 1",
           "description": "This is Board 1",
-          "projectId": "1"
+          "projectId": "__project1_id__"
         }
       }
     }

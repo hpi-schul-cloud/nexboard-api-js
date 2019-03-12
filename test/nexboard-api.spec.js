@@ -9,6 +9,11 @@ const expect = chai.expect;
 const PORT = 12345;
 const URL = 'http://localhost';
 
+const PROJECT1_ID = '__project1_id__';
+const PROJECT2_ID = '__project2_id__';
+const BOARD1_ID = '__board1_id__';
+const BOARD2_ID = '__board1_id__';
+
 describe('neXboard API', () => {
 
     const nexboard = new Nexboard('atZjs8AYFeTYDRhdmVuC', 658, `${URL}:${PORT}/`);
@@ -33,11 +38,11 @@ describe('neXboard API', () => {
     describe('GET /projects', () => {
 
         const RESPONSE_BODY = [{
-            id: '1',
+            id: PROJECT1_ID,
             title: 'Project 1',
             description: 'This is project 1',
         }, {
-            id: '2',
+            id: PROJECT2_ID,
             title: 'Project 2',
             description: 'This is project 2',
         }];
@@ -74,10 +79,9 @@ describe('neXboard API', () => {
 
     describe('POST /projects', () => {
 
-        const PROJECT_TITLE = 'Project 1';
-        const PROJECT_DESC = 'This is project 1'
+        const PROJECT_TITLE = 'Project';
+        const PROJECT_DESC = 'This is a project'
         const RESPONSE_BODY = {
-            id: '1',
             title: PROJECT_TITLE,
             description: PROJECT_DESC,
         };
@@ -105,7 +109,7 @@ describe('neXboard API', () => {
         });
 
         it('should create a project', () => {
-            const myProjects = nexboard.createProject('Project 1', 'This is project 1');
+            const myProjects = nexboard.createProject(PROJECT_TITLE, PROJECT_DESC);
 
             return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
         })
@@ -113,17 +117,16 @@ describe('neXboard API', () => {
 
     describe('GET /projects/:id/boards', () => {
 
-        const PROJECT_ID = '1';
         const RESPONSE_BODY = [{
-            id: '1',
+            id: BOARD1_ID,
             title: 'Board 1',
             description: 'This is Board 1',
-            projectId: PROJECT_ID,
+            projectId: PROJECT1_ID,
         }, {
-            id: '2',
+            id: BOARD2_ID,
             title: 'Board 2',
             description: 'This is Board 2',
-            projectId: PROJECT_ID,
+            projectId: PROJECT1_ID,
         }];
 
         before(done => {
@@ -132,7 +135,7 @@ describe('neXboard API', () => {
                 uponReceiving: 'a request for all Boards of my projects',
                 withRequest: {
                   method: 'GET',
-                  path: `/projects/${PROJECT_ID}/boards`,
+                  path: `/projects/${PROJECT1_ID}/boards`,
                   headers: {
                       Accept: 'application/json'
                   }
@@ -149,7 +152,7 @@ describe('neXboard API', () => {
         });
 
         it('should return a list of projects', () => {
-            const myProjects = nexboard.getBoardsByProject(PROJECT_ID);
+            const myProjects = nexboard.getBoardsByProject(PROJECT1_ID);
 
             return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
         })
@@ -157,21 +160,20 @@ describe('neXboard API', () => {
 
     describe('GET /boards/:id', () => {
 
-        const BOARD_ID = '1';
         const RESPONSE_BODY = {
-            id: BOARD_ID,
+            id: BOARD1_ID,
             title: 'Board 1',
             description: 'This is Board 1',
-            projectId: '1',
+            projectId: PROJECT1_ID,
         };
 
         before(done => {
             const interaction = {
-                state: 'I have some a board',
+                state: 'I have a board',
                 uponReceiving: 'a request for board by id',
                 withRequest: {
                     method: 'GET',
-                    path: `/boards/${BOARD_ID}`,
+                    path: `/boards/${BOARD1_ID}`,
                     headers: {
                         Accept: 'application/json'
                     }
@@ -187,10 +189,10 @@ describe('neXboard API', () => {
             provider.addInteraction(interaction).then(() => done());
         });
 
-        it('should return a list of projects', () => {
-            const myProjects = nexboard.getBoard(BOARD_ID);
+        it('should return a board', () => {
+            const myBoard = nexboard.getBoard(BOARD1_ID);
 
-            return expect(myProjects).to.eventually.eql(RESPONSE_BODY);
+            return expect(myBoard).to.eventually.eql(RESPONSE_BODY);
         })
     });
 });
