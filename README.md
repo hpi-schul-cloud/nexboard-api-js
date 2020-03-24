@@ -14,9 +14,9 @@ nex = new Nexboard(ApiKey, UserID, Url);
 
 ### functions
 ```javascript
-nex.getProjectsIDs();
+nex.getProjectsIds();
 ```
-retun a list of IDs from all projects.
+return a list of IDs from all projects.
 
 
 ```javascript
@@ -24,7 +24,7 @@ nex.createProject(
     "Title of project" , 
     "description of project");
 ```
-create an new project and return it. 
+create a new project and return it. 
 
 ```javascript 
 nex.createBoard(
@@ -32,12 +32,12 @@ nex.createBoard(
     "description of Board", 
     IdOfProjectFromThisBoard);
 ```
-create an new board and return it. 
+create a new board and return it. 
     
 ```javascript
 nex.getBoardsByProject(ProjectId));
 ```
-return all boards from Project.
+return all boards from project.
 
 ```javascript
 nex.getBoard(BoardId));
