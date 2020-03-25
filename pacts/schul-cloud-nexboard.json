@@ -1,0 +1,119 @@
+{
+  "consumer": {
+    "name": "Schul-Cloud"
+  },
+  "provider": {
+    "name": "neXboard"
+  },
+  "interactions": [
+    {
+      "description": "a request for all my projects",
+      "providerState": "I have some projects",
+      "request": {
+        "method": "GET",
+        "path": "/projects",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "__project1_id__",
+            "title": "Project 1",
+            "description": "This is project 1"
+          },
+          {
+            "id": "__project2_id__",
+            "title": "Project 2",
+            "description": "This is project 2"
+          }
+        ]
+      }
+    },
+    {
+      "description": "a request to create a project",
+      "providerState": "I have some projects",
+      "request": {
+        "method": "POST",
+        "path": "/projects",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "title": "Project",
+          "description": "This is a project"
+        }
+      }
+    },
+    {
+      "description": "a request for all Boards of my projects",
+      "providerState": "I have some boards in my project",
+      "request": {
+        "method": "GET",
+        "path": "/projects/__project1_id__/boards",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": "__board1_id__",
+            "title": "Board 1",
+            "description": "This is Board 1",
+            "projectId": "__project1_id__"
+          },
+          {
+            "id": "__board1_id__",
+            "title": "Board 2",
+            "description": "This is Board 2",
+            "projectId": "__project1_id__"
+          }
+        ]
+      }
+    },
+    {
+      "description": "a request for board by id",
+      "providerState": "I have a board",
+      "request": {
+        "method": "GET",
+        "path": "/boards/__board1_id__",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "__board1_id__",
+          "title": "Board 1",
+          "description": "This is Board 1",
+          "projectId": "__project1_id__"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
