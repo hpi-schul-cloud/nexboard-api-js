@@ -1,6 +1,6 @@
 # nexboard-api-js
 
-## Useage
+## Usage
 
 ```javascript
 Nexboard = require("nexboard-api-js");
@@ -43,3 +43,9 @@ return all boards from Project.
 nex.getBoard(BoardId));
 ```
 return the board object from ID.
+
+## Test
+We are using contract tests with [pact-js](https://github.com/pact-foundation/pact-js) to ensure this module is compatible with the latest version of the neXboard API.
+Run `npm run create-pacts` to verify compatibility and create pacts.
+This will override `pacts/schul-cloud-nexboard.json` with the newest contracts.
+These generated contracts will also be used in neXboard to verify new deployments don't break this dependency.

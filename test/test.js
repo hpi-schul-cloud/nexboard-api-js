@@ -1,44 +1,37 @@
-const expect = require('chai').expect;
+const chai = require('chai');
+const chaiAsApromised = require('chai-as-promised');
 const Nexboard = require('../lib/index');
+
+chai.use(chaiAsApromised);
+const expect = chai.expect;
+
 
 describe('Nexboard JS Wrapper', () => {
 
     const NexboardTest = new Nexboard("atZjs8AYFeTYDRhdmVuC", 658);
 
     it('Should get projectIds', () => {
-        NexboardTest.getProjectsIds()
-            .then(res => {
-                expect(res).to.be.an('array').that.is.not.empty;
-            });
+        return expect(NexboardTest.getProjectsIds()).to.eventually.be.an('array').that.is.not.empty;
     });
 
     it('Should create a project', () => {
-        NexboardTest.createProject("Test", "Test")
-            .then(res => {
-                expect(res).to.be.not.null;
-            });
+        return expect(NexboardTest.createProject("Test", "Test")).to.eventually.be.not.null;
     });
 
     it('Should get a Board with projectId', () => {
-        NexboardTest.getBoardsByProject(1013)
-            .then(res => {
-                expect(res).to.be.an('array');
-                expect(res).to.be.not.null;
-            })
+        return expect(NexboardTest.getBoardsByProject(1013)).to.eventually.be.an('array').that.is.not.null;
     });
 
     it('Should get a Board by id', () => {
-        NexboardTest.getBoard(4862)
-            .then(res => {
-               expect(res).to.be.not.null;
-               expect(res.id).to.equal(4862);
-            });
+        const boardById = NexboardTest.getBoard(4862)
+
+        return Promise.all([
+            expect(boardById).to.eventually.be.not.null,
+            expect(boardById).to.eventually.have.property('id').that.is.eq('4862'),
+        ]);
     });
 
     it('Should not be able to create a new Board', () => {
-        NexboardTest.createBoard("Test", "Test", 1014)
-            .catch(err => {
-                expect(err.message).to.have.string("Could not create a new Board");
-            })
+        return expect(NexboardTest.createBoard("Test", "Test", 1014)).to.be.rejectedWith({error: "Could not create a new Board"})
     });
 });

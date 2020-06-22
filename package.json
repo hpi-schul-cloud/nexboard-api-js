@@ -8,7 +8,8 @@
     "url": "git+https://github.com/schul-cloud/nexboard-api-js.git"
   },
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "create-pacts": "node ./node_modules/mocha/bin/mocha test/nexboard-api.spec.js"
   },
   "author": "",
   "bugs": {
@@ -16,6 +17,8 @@
   },
   "homepage": "https://github.com/schul-cloud/nexboard-api-js#readme",
   "dependencies": {
+    "chai-as-promised": "^7.1.1",
+    "pact": "^4.3.2",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
   },
