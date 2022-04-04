@@ -3,14 +3,14 @@
 ## Usage
 
 ```javascript
-Nexboard = require("nexboard-api-js");
+Nexboard = require("@hpi-schul-cloud/nexboard-api-js");
 
 nex = new Nexboard(ApiKey, UserID, Url);
 ```
 ### params 
 - `ApiKey` = The identification key from account.
 - `UserId` = The Id from user.
-- `Url`= the URL of the API interface. If zero the value is set to [default](https://nexboard.nexenio.com/portal/api/v1/public/)
+- `Url`= the URL of the API interface. If zero the value is set to [default](https://nexboard-api.nexenio.com/)
 
 ### functions
 ```javascript
