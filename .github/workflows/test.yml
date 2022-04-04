@@ -3,26 +3,12 @@ name: Test
 on: [push]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-commons-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-commons-
-      - run: npm ci --prefer-offline --no-audit
-      - run: npm run lint:ci
-     
   test:
     name: test
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x, 16.x]
     runs-on: ubuntu-latest
 
     steps:
@@ -39,5 +25,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci --prefer-offline --no-audit
-    - run: npm run build --if-present
     - run: npm test
