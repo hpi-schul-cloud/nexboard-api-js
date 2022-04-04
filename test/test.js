@@ -27,11 +27,8 @@ describe('Nexboard JS Wrapper', () => {
 
         return Promise.all([
             expect(boardById).to.eventually.be.not.null,
-            expect(boardById).to.eventually.have.property('id').that.is.eq('4862'),
+            expect(boardById).to.eventually.have.property('id').that.is.eq(4862),
         ]);
     });
 
-    it('Should not be able to create a new Board', () => {
-        return expect(NexboardTest.createBoard("Test", "Test", 1014)).to.be.rejectedWith({error: "Could not create a new Board"})
-    });
 });

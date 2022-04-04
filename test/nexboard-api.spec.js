@@ -21,7 +21,7 @@ describe('neXboard API', () => {
     const provider = Pact({
         port: PORT,
         provider: 'neXboard',
-        consumer: 'Schul-Cloud',
+        consumer: 'dBildungscloud Team',
     });
 
 

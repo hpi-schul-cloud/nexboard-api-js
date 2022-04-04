@@ -1,21 +1,30 @@
 {
-  "name": "nexboard-api-js",
-  "version": "1.1.2",
+  "name": "@hpi-schul-cloud/nexboard-api-js",
+  "version": "1.1.3",
   "description": "A javascript wrapper for the Nexboard API.",
   "main": "lib/index",
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": "16",
+    "npm": "8"
+  },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/schul-cloud/nexboard-api-js.git"
+    "github": "https://github.com/hpi-schul-cloud/nexboard-api-js.git"
   },
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
     "create-pacts": "node ./node_modules/mocha/bin/mocha test/nexboard-api.spec.js"
   },
-  "author": "",
-  "bugs": {
-    "url": "https://github.com/schul-cloud/nexboard-api-js/issues"
+  "author": {
+    "name": "dBildungscloud Team"
   },
-  "homepage": "https://github.com/schul-cloud/nexboard-api-js#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/hpi-schul-cloud/nexboard-api-js/issues"
+  },
+  "homepage": "https://github.com/hpi-schul-cloud/nexboard-api-js#readme",
   "dependencies": {
     "chai-as-promised": "^7.1.1",
     "pact": "^4.3.2",

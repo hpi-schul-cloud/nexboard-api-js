@@ -1,0 +1,43 @@
+name: Test
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-commons-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-commons-
+      - run: npm ci --prefer-offline --no-audit
+      - run: npm run lint:ci
+     
+  test:
+    name: test
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-${{ matrix.node-version }}-commons-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-commons-
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci --prefer-offline --no-audit
+    - run: npm run build --if-present
+    - run: npm test
