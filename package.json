@@ -1,6 +1,6 @@
 {
   "name": "@hpi-schul-cloud/nexboard-api-js",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A javascript wrapper for the Nexboard API.",
   "main": "lib/index",
   "license": "AGPL-3.0",
